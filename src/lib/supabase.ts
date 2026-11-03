@@ -6,9 +6,14 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 //   사용자의 HELOC/재산세 시나리오 메모는 DB 전송 전 브라우저에서 AES-256-GCM으로 암호화합니다.
 // =========================================================================
 
+const DEFAULT_SUPABASE_URL = 'https://efbzpaaulnpbwghzytuq.supabase.co';
+const DEFAULT_SUPABASE_ANON_KEY =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVmYnpwYWF1bG5wYndnaHp5dHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMDY1NjYsImV4cCI6MjEwNDc4MjU2Nn0.DqQgK-Jav3PlVfiiAK4pvYgKeR8jWLyde0rYuruZkTU';
+
 const env = (import.meta as unknown as { env: Record<string, string | undefined> }).env || {};
-const supabaseUrl = env.VITE_SUPABASE_URL || '';
-const supabaseKey = env.VITE_SUPABASE_PUBLISHABLE_KEY || env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = env.VITE_SUPABASE_URL || DEFAULT_SUPABASE_URL;
+const supabaseKey =
+  env.VITE_SUPABASE_PUBLISHABLE_KEY || env.VITE_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY;
 
 export const isSupabaseConfigured = Boolean(
   supabaseUrl && supabaseKey && !supabaseUrl.includes('your-project-id')
@@ -106,4 +111,3 @@ export async function saveHelocScenario(
     };
   }
 }
-
