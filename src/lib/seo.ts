@@ -1,16 +1,19 @@
 import { useEffect } from 'react';
 
 // =========================================================================
-// 동적 검색엔진 최적화(SEO) 유틸리티 (HelocTaxSmart)
+// 동적 검색엔진 최적화(SEO) & GA4 페이지뷰 자동 추적 유틸리티
+// - 외부 무거운 라이브러리 없이 브라우저의 <title>, <meta name="description">,
+//   <link rel="canonical">, Open Graph 태그를 페이지마다 안전하게 변경하고,
+//   SPA 라우트 변경 시 Google Analytics 4 (gtag) 이벤트를 자동 전송합니다.
 // =========================================================================
 
 export const SITE_ORIGIN = 'https://heloc.bangjang.net';
 export const SITE_NAME = 'HelocTaxSmart';
 
 export interface PageSeoInput {
-  title: string;
-  description: string;
-  path: string;
+  title: string;       // 브라우저 탭 및 검색 결과 제목
+  description: string; // 검색 결과 요약 설명문
+  path: string;        // 현재 페이지 경로 (예: "/state/new-jersey")
 }
 
 function setMetaTag(attrName: 'name' | 'property', attrValue: string, content: string) {
@@ -51,6 +54,14 @@ export function usePageSeo({ title, description, path }: PageSeoInput) {
     setMetaTag('property', 'twitter:description', description);
 
     setCanonicalLink(canonicalUrl);
+
+    // GA4 페이지 이동(SPA 라우팅) 이벤트 전송
+    if (typeof window !== 'undefined' && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === 'function') {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag('event', 'page_view', {
+        page_title: title,
+        page_location: canonicalUrl,
+        page_path: cleanPath,
+      });
+    }
   }, [title, description, path]);
 }
-

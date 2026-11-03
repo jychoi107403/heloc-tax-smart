@@ -12,6 +12,9 @@
       gtag('config', 'G-ZS5PRJ8F1H');
     </script>
 
+    <!-- 구글 서치 콘솔 (Google Search Console 사이트 소유권 확인 메타태그) -->
+    <meta name="google-site-verification" content="google8dfc27124880d18e" />
+
     <!-- 브라우저 탭 아이콘 (열쇠/집 모양 SVG 파비콘) -->
     <link
       rel="icon"
@@ -69,21 +72,68 @@
       content="Instant US HELOC credit limit, monthly payment, and property tax appeal calculator."
     />
 
-    <!-- 구글 구조화 데이터 (JSON-LD: 검색 결과에 금융 웹앱 정보 표시) -->
+    <!-- 구글 구조화 데이터 (JSON-LD: WebApplication + Organization 7개 네트워크 + FAQ 리치 스니펫) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "HelocTaxSmart US HELOC & Property Tax Appeal Calculator",
-        "url": "https://heloc.bangjang.net/",
-        "description": "Free US HELOC borrowing limit, monthly draw and repayment payment, and property tax appeal savings calculator for all 50 states and DC.",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "All",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "name": "HelocTaxSmart US HELOC & Property Tax Appeal Calculator",
+            "url": "https://heloc.bangjang.net/",
+            "description": "Free US HELOC borrowing limit, monthly draw and repayment payment, and property tax appeal savings calculator for all 50 states and DC.",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "All",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "Organization",
+            "name": "US Smart Finance Network",
+            "url": "https://heloc.bangjang.net/",
+            "sameAs": [
+              "https://mortgage.bangjang.net",
+              "https://paycheck.bangjang.net",
+              "https://autoloan.bangjang.net",
+              "https://1099tax.bangjang.net",
+              "https://401k.bangjang.net",
+              "https://heloc.bangjang.net",
+              "https://rentalroi.bangjang.net"
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How much HELOC can I borrow based on my home equity?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Most US lenders allow a Combined Loan-to-Value (CLTV) ratio of 80% to 85% of your home's appraised market value, minus your remaining first mortgage balance. In Texas, Section 50(a)(6) constitutional rules cap total home equity borrowing at 80% CLTV."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the difference between the HELOC draw period and repayment period?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "During the initial 10-year HELOC draw period, you can borrow funds and typically make interest-only monthly payments. Once the 15-to-20-year repayment period begins, the line closes to new borrowing and you pay principal plus interest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much can I save by appealing my county property tax assessment?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "If comparable neighborhood home sales prove your county tax assessor overvalued your property by $30,000 to $50,000, filing a property tax appeal can save $500 to $1,500+ per year depending on your state's effective property tax rate."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
@@ -92,4 +142,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
